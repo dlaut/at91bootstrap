@@ -758,7 +758,9 @@ static int qspi_flash_probe(qspi_flash_t *flash)
 	unsigned char id[3]; /* Manufacturer and Device ID */
 	char id_str[12], *p;
 	int i, ret;
+	int retry = 1;
 
+retry:
 	for (config = configs;
 	     (config - configs) < ARRAY_SIZE(configs);
 	     ++config) {
@@ -771,6 +773,8 @@ static int qspi_flash_probe(qspi_flash_t *flash)
 		memset(id, 0xff, sizeof(id));
 		ret = qspi_flash_read_reg(flash, config->opcode,
 					  id, sizeof(id));
+
+		dbg_info("QSPI Flash probe: protocol=%d opcode=%d result=%d data=%d %d %d\n", config->proto, config->opcode, ret, id[0], id[1], id[2]);
 		if (ret < 0)
 			continue;
 
@@ -779,6 +783,13 @@ static int qspi_flash_probe(qspi_flash_t *flash)
 		     ++info)
 			if (id[0] == info->manufacturer_id)
 				goto found;
+	}
+
+	// AP, please retry once
+	if (retry)
+	{	
+		retry = 0;
+		goto retry;
 	}
 
 	return -1;

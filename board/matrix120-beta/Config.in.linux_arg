@@ -1,0 +1,2 @@
+config CONFIG_LINUX_KERNEL_ARG_STRING
+	default "console=ttyS0,115200 tbd"

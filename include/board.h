@@ -96,6 +96,10 @@
 #include "sama5d2_xplained.h"
 #endif
 
+#ifdef CONFIG_MATRIX120_BETA
+#include "matrix120-beta.h"
+#endif
+
 #include "contrib_board.h"
 
 /*

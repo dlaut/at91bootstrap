@@ -49,6 +49,7 @@
 #define	BOARD_ID_SAMA5D4_XULT	17
 #define	BOARD_ID_SAMA5D36_CP	18
 #define	BOARD_ID_SAMA5D2_XULT	19
+#define BOARD_ID_MATRIX120_BETA	20
 
 /* Vendor id definition */
 #define VENDOR_EMBEST		1
@@ -57,6 +58,7 @@
 #define VENDOR_COGENT		4
 #define VENDOR_PDA		5
 #define VENDOR_ATMEL_RFO	6
+#define VENDOR_DATALOGIC	7
 
 #define HW_INFO_TOTAL_SIZE	0x20
 
